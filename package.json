@@ -1,0 +1,33 @@
+{
+  "name": "disk-map",
+  "version": "0.1.0",
+  "description": "A map structure stored on disk",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint index.js && ./node_modules/.bin/mocha",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanni4night/disk-map.git"
+  },
+  "keywords": [
+    "disk",
+    "map"
+  ],
+  "author": "yanni4night@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yanni4night/disk-map/issues"
+  },
+  "homepage": "https://github.com/yanni4night/disk-map#readme",
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "tmp": "0.0.28"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.9",
+    "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0"
+  }
+}
