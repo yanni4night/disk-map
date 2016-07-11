@@ -97,7 +97,9 @@ describe('DiskMap', function () {
             dm.set('NaN', NaN);
             assert.ok(isNaN(dm.get('NaN')));
         });
-
+        it('should return undefined', function () {
+            assert.deepEqual(new DiskMap().get('non-exist'), undefined);
+        });
     });
     describe('has', function () {
         it('should return true', function () {

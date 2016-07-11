@@ -13,8 +13,6 @@
 
 var tmp = require('tmp');
 var fs = require('fs');
-var path = require('path');
-var util = require('util');
 var _ = require('lodash');
 var defineFrozenProperty = require('define-frozen-property');
 
@@ -31,9 +29,10 @@ function DiskMap(options) {
 
 _.extend(DiskMap.prototype, {
     set: function (key, value) {
+        var fdObj;
         if (Buffer.isBuffer(value)) {
             if (value.length >= this.options.threshold) {
-                var fdObj = tmp.fileSync();
+                fdObj = tmp.fileSync();
                 fs.writeSync(fdObj.fd, value, 0, value.length);
                 this._map[key] = {
                     type: 'buffer',
@@ -47,7 +46,7 @@ _.extend(DiskMap.prototype, {
             }
         } else if (_.isString(value)) {
             if (Buffer.byteLength(value) >= this.options.threshold) {
-                var fdObj = tmp.fileSync();
+                fdObj = tmp.fileSync();
                 var buf = Buffer.from(value);
                 fs.writeSync(fdObj.fd, buf, 0, buf.length);
                 this._map[key] = {
